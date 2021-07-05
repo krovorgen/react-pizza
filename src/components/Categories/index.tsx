@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ActiveCategoryType } from '../../App';
+import { ActiveCategoryType } from '../../pages/Home';
 
 interface ICategoriesProps {
   items: string[];
