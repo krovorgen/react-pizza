@@ -12,24 +12,21 @@ type AppearancesType = {
 interface IButtonProps {
     onClick?: () => void;
     addClass?: string;
+    appearance?: AppearancesType;
 }
 
 const Button: FC<IButtonProps & AppearancesType> = ({
     children,
     addClass,
-    outline,
     onClick,
-    cart,
-    add,
-    black,
-    circle,
+    ...appearance
 }) => {
     const classNamesList = {
-        'button--outline': outline,
-        'button--cart': cart,
-        'button--add': add,
-        'button--circle': circle,
-        'button--black': black,
+        'button--outline': appearance.outline,
+        'button--cart': appearance.cart,
+        'button--add': appearance.add,
+        'button--circle': appearance.circle,
+        'button--black': appearance.black,
     };
 
     return (
