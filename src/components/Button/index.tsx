@@ -1,17 +1,41 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
 
+type AppearancesType = {
+    outline?: boolean;
+    cart?: boolean;
+    add?: boolean;
+    circle?: boolean;
+    black?: boolean;
+};
+
 interface IButtonProps {
-    outline?: boolean
+    onClick?: () => void;
+    addClass?: string;
 }
 
-const Button: FC<IButtonProps> = ({children, outline}) => {
+const Button: FC<IButtonProps & AppearancesType> = ({
+    children,
+    addClass,
+    outline,
+    onClick,
+    cart,
+    add,
+    black,
+    circle,
+}) => {
     const classNamesList = {
-        'button--outline': outline
-    }
+        'button--outline': outline,
+        'button--cart': cart,
+        'button--add': add,
+        'button--circle': circle,
+        'button--black': black,
+    };
 
     return (
-        <button className={classNames('button', classNamesList)}>{children}</button>
+        <button onClick={onClick} className={classNames('button', addClass, classNamesList)}>
+            {children}
+        </button>
     );
 };
 

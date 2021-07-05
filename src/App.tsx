@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Header from './components/Header';
+import { Categories, Header } from './components';
+
+export type ActiveCategoryType = number | null;
 
 const App = () => {
+    const categoriesMockData = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+    const [activeCategory, setActiveCategory] = useState<ActiveCategoryType>(null);
+
     return (
         <>
             <div className="wrapper">
@@ -10,16 +15,11 @@ const App = () => {
                 <div className="content">
                     <div className="container">
                         <div className="content__top">
-                            <div className="categories">
-                                <ul>
-                                    <li className="active">Все</li>
-                                    <li>Мясные</li>
-                                    <li>Вегетарианская</li>
-                                    <li>Гриль</li>
-                                    <li>Острые</li>
-                                    <li>Закрытые</li>
-                                </ul>
-                            </div>
+                            <Categories
+                                activeCategory={activeCategory}
+                                setActiveCategory={(index) => setActiveCategory(index)}
+                                items={categoriesMockData}
+                            />
                             <div className="sort">
                                 <div className="sort__label">
                                     <svg
@@ -90,7 +90,6 @@ const App = () => {
                     </div>
                 </div>
             </div>
-            );
         </>
     );
 };
