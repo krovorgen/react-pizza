@@ -6,7 +6,10 @@ export type ActiveCategoryType = number | null;
 
 const App = () => {
   const categoriesMockData = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+  const sortMockData = ['популярности', 'цене', 'алфавиту'];
+
   const [activeCategory, setActiveCategory] = useState<ActiveCategoryType>(null);
+  const [activeSortName, setActiveSortName] = useState<number>(0);
 
   return (
     <>
@@ -20,7 +23,11 @@ const App = () => {
                 setActiveCategory={(index) => setActiveCategory(index)}
                 items={categoriesMockData}
               />
-              <SortPopup />
+              <SortPopup
+                items={sortMockData}
+                activeSortName={activeSortName}
+                setActiveSortName={setActiveSortName}
+              />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
