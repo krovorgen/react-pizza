@@ -4,8 +4,8 @@ import { Route } from 'react-router-dom';
 import { Header } from './components';
 import { Cart, Home } from './pages';
 
-type ProductItemType = {
-  id: string;
+export type ProductCardType = {
+  id?: string;
   imageUrl: string;
   name: string;
   types: number[];
@@ -16,7 +16,7 @@ type ProductItemType = {
 };
 
 const App = () => {
-  const [productItem, setProductItem] = useState<ProductItemType[]>([]);
+  const [productItem, setProductItem] = useState<ProductCardType[]>([]);
 
   useEffect(() => {
     fetch('http://localhost:3000/db.json')
@@ -31,7 +31,7 @@ const App = () => {
       <div className="wrapper">
         <Header />
         <div className="content">
-          <Route path="/" exact render={() => <Home />} />
+          <Route path="/" exact render={() => <Home productItem={productItem} />} />
           <Route path="/cart" exact render={() => <Cart />} />
         </div>
       </div>
