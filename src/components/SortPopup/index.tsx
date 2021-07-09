@@ -1,7 +1,12 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 
+type ItemsType = {
+  name: string;
+  type: string;
+};
+
 interface ISortPopupProps {
-  items: string[];
+  items: ItemsType[];
   activeSortName: number;
   setActiveSortName: (idx: number) => void;
 }
@@ -25,7 +30,7 @@ const SortPopup: FC<ISortPopupProps> = ({ items, activeSortName, setActiveSortNa
     setVisiblePopup(false);
   };
 
-  const activeLabel = items[activeSortName];
+  const activeLabel = items[activeSortName].name;
 
   return (
     <div className="sort" ref={sortRef}>
@@ -55,7 +60,7 @@ const SortPopup: FC<ISortPopupProps> = ({ items, activeSortName, setActiveSortNa
                   className={idx === activeSortName ? 'active' : ''}
                   onClick={() => onSelectItem(idx)}
                 >
-                  {item}
+                  {item.name}
                 </li>
               ))}
           </ul>
