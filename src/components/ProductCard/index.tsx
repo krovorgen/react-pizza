@@ -2,14 +2,20 @@ import React, { FC, useState } from 'react';
 import { ProductCardType } from '../../App';
 import classNames from 'classnames';
 
-const ProductCard: FC<ProductCardType> = ({ imageUrl, price, name, types }) => {
+const ProductCard: FC<ProductCardType> = ({ imageUrl, price, name, types, sizes }) => {
   const [activeType, setActiveType] = useState<number>(types[0]);
+  const [activeSize, setActiveSize] = useState(sizes[0]);
+
   const typesName = ['тонкое', 'традиционное'];
+  const sizeName = [26, 30, 40];
+
   const activeTypeHandler = (index: number) => {
     setActiveType(index);
   };
 
-  const [activeSize, setActiveSize] = useState();
+  const activeSizeHandler = (index: number) => {
+    setActiveSize(index);
+  };
 
   return (
     <div className="pizza-block">
@@ -31,9 +37,20 @@ const ProductCard: FC<ProductCardType> = ({ imageUrl, price, name, types }) => {
           ))}
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {sizeName.map((size, index) => {
+            return (
+              <li
+                key={index}
+                onClick={() => activeSizeHandler(index)}
+                className={classNames({
+                  active: activeSize === index,
+                  disabled: !sizes.includes(size),
+                })}
+              >
+                {size} см.
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className="pizza-block__bottom">

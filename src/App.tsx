@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
+import axios from 'axios';
 
 import { Header } from './components';
 import { Cart, Home } from './pages';
@@ -19,11 +20,9 @@ const App = () => {
   const [productItem, setProductItem] = useState<ProductCardType[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/db.json')
-      .then((response) => response.json())
-      .then((json) => {
-        setProductItem(json.pizzas);
-      });
+    axios.get('http://localhost:3000/db.json').then(({ data }) => {
+      setProductItem(data.pizzas);
+    });
   }, []);
 
   return (
