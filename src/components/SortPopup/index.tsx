@@ -57,6 +57,7 @@ const SortPopup: FC<ISortPopupProps> = ({ items, activeSortName, setActiveSortNa
             {items &&
               items.map((item, idx) => (
                 <li
+                  key={idx + item.type}
                   className={idx === activeSortName ? 'active' : ''}
                   onClick={() => onSelectItem(idx)}
                 >
