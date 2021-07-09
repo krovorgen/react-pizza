@@ -7,14 +7,14 @@ export type FiltersActionType = {
   payload: SortByType | number;
 };
 
-export type ProductItemActionType = {
-  type: 'SET_PRODUCT';
-  payload: ProductCardType[];
-};
-
 export type FiltersReducerType = {
   category: number;
   sortBy: SortByType;
+};
+
+export type ProductItemActionType = {
+  type: 'SET_PRODUCT';
+  payload: ProductCardType[];
 };
 
 export type ProductItemReducerType = {
