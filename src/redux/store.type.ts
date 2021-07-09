@@ -1,18 +1,25 @@
 import { ProductCardType } from '../App';
 
-export type FiltersType = {
+export type SortByType = 'popular' | 'price' | 'alphabet';
+
+export type FiltersActionType = {
   type: 'SET_SORT_BY' | 'SET_CATEGORY';
-  payload: 'popular' | 'price' | 'alphabet' | number;
+  payload: SortByType | number;
 };
 
-export type ProductItemType = {
+export type ProductItemActionType = {
   type: 'SET_PRODUCT';
   payload: ProductCardType[];
 };
 
 export type FiltersReducerType = {
   category: number;
-  sortBy: 'popular' | 'price' | 'alphabet';
+  sortBy: SortByType;
 };
 
-export type ActionTypes = FiltersType | ProductItemType;
+export type ProductItemReducerType = {
+  items: ProductCardType[];
+  isLoaded: boolean;
+};
+
+export type ActionTypes = FiltersActionType | ProductItemActionType;

@@ -1,13 +1,16 @@
 import { createStore } from 'redux';
 import rootReducer from './root-reducers';
 
-const store = createStore(rootReducer);
+// @ts-ignore
+const store = createStore(
+  rootReducer,
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 store.subscribe(() => {
   console.log(store.getState());
 });
 
-// @ts-ignore
-window.store = store;
+(window as any).store = store;
 
 export default store;
