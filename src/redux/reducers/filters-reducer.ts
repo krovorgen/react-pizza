@@ -2,7 +2,7 @@ import { FiltersInitialStateType } from './types';
 import { FiltersActionType } from '../actions/types/filters-action.type';
 
 const initialState: FiltersInitialStateType = {
-  category: 0,
+  category: null,
   sortBy: 'popular',
 };
 

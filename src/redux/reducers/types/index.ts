@@ -1,8 +1,8 @@
 import { SortByType } from '../../actions/types/filters-action.type';
-import { ProductCardType } from '../../../types';
+import { ActiveCategoryIndexType, ProductCardType } from '../../../types';
 
 export type FiltersInitialStateType = {
-  category: number;
+  category: ActiveCategoryIndexType;
   sortBy: SortByType;
 };
 

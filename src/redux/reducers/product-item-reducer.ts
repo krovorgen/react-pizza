@@ -12,6 +12,12 @@ const productItemReducer = (state = initialState, action: ProductItemActionType)
       return {
         ...state,
         items: action.payload,
+        isLoaded: true,
+      };
+    case 'SET_LOADED':
+      return {
+        ...state,
+        isLoaded: action.payload,
       };
     default:
       return state;

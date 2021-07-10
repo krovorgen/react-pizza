@@ -8,3 +8,5 @@ export type ProductCardType = {
   category: number;
   rating: number;
 };
+
+export type ActiveCategoryIndexType = number | null;

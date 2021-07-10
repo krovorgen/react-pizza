@@ -1,8 +1,13 @@
 import { ProductCardType } from '../../../types';
 
-type SetProductType = {
+export type SetProductType = {
   type: 'SET_PRODUCT';
   payload: ProductCardType[];
 };
 
-export type ProductItemActionType = SetProductType;
+export type SetLoadedType = {
+  type: 'SET_LOADED';
+  payload: boolean;
+};
+
+export type ProductItemActionType = SetProductType | SetLoadedType;
