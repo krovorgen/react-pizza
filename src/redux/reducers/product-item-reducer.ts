@@ -1,12 +1,12 @@
 import { ProductInitialStateType } from './types';
-import { ActionTypes } from '../actions/types';
+import { ProductItemActionType } from '../actions/types/product-item-action.type';
 
 const initialState: ProductInitialStateType = {
   items: [],
   isLoaded: false,
 };
 
-const productItemReducer = (state = initialState, action: ActionTypes) => {
+const productItemReducer = (state = initialState, action: ProductItemActionType) => {
   switch (action.type) {
     case 'SET_PRODUCT':
       return {

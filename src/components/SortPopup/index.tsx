@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, memo, useEffect, useRef, useState } from 'react';
 import { ISortPopupProps } from './types';
 
-const SortPopup: FC<ISortPopupProps> = ({ items, activeSortName, setActiveSortName }) => {
+const SortPopup: FC<ISortPopupProps> = ({ items }) => {
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
+  const [activeSortName, setActiveSortName] = useState<number>(0);
 
   const sortRef = useRef<HTMLDivElement>(null);
   const toggleVisiblePopup = () => setVisiblePopup(!visiblePopup);
@@ -61,4 +62,4 @@ const SortPopup: FC<ISortPopupProps> = ({ items, activeSortName, setActiveSortNa
   );
 };
 
-export default SortPopup;
+export default memo(SortPopup);

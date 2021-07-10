@@ -5,6 +5,4 @@ export type ItemsType = {
 
 export interface ISortPopupProps {
   items: ItemsType[];
-  activeSortName: number;
-  setActiveSortName: (idx: number) => void;
 }

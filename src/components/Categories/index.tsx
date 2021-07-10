@@ -1,8 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useState } from 'react';
 import { ICategoriesProps } from './types';
 import { ActiveCategoryType } from '../../pages/Home';
 
-const Categories: FC<ICategoriesProps> = ({ items, onClickItem }) => {
+const Categories: FC<ICategoriesProps> = ({ categoriesMockData, onClickItem }) => {
   const [activeCategory, setActiveCategory] = useState<ActiveCategoryType>(null);
 
   const onSelectItem = (index: number) => {
@@ -19,8 +19,8 @@ const Categories: FC<ICategoriesProps> = ({ items, onClickItem }) => {
         >
           Все
         </li>
-        {items &&
-          items.map((name, index) => (
+        {categoriesMockData &&
+          categoriesMockData.map((name, index) => (
             <li
               onClick={() => onSelectItem(index)}
               className={activeCategory === index ? 'active' : ''}
@@ -34,4 +34,4 @@ const Categories: FC<ICategoriesProps> = ({ items, onClickItem }) => {
   );
 };
 
-export default Categories;
+export default memo(Categories);

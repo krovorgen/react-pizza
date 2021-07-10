@@ -1,4 +1,4 @@
 export interface ICategoriesProps {
-  items: string[];
+  categoriesMockData: string[];
   onClickItem: (index: number) => void;
 }
