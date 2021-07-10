@@ -1,13 +1,15 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { ICategoriesProps } from './types';
 import { ActiveCategoryType } from '../../pages/Home';
 
-interface ICategoriesProps {
-  items: string[];
-  setActiveCategory: (index: ActiveCategoryType) => void;
-  activeCategory: ActiveCategoryType;
-}
+const Categories: FC<ICategoriesProps> = ({ items, onClickItem }) => {
+  const [activeCategory, setActiveCategory] = useState<ActiveCategoryType>(null);
 
-const Categories: FC<ICategoriesProps> = ({ items, setActiveCategory, activeCategory }) => {
+  const onSelectItem = (index: number) => {
+    setActiveCategory(index);
+    onClickItem(index);
+  };
+
   return (
     <div className="categories">
       <ul>
@@ -18,11 +20,11 @@ const Categories: FC<ICategoriesProps> = ({ items, setActiveCategory, activeCate
           Все
         </li>
         {items &&
-          items.map((name, idx) => (
+          items.map((name, index) => (
             <li
-              onClick={() => setActiveCategory(idx)}
-              className={activeCategory === idx ? 'active' : ''}
-              key={name + idx}
+              onClick={() => onSelectItem(index)}
+              className={activeCategory === index ? 'active' : ''}
+              key={name + index}
             >
               {name}
             </li>

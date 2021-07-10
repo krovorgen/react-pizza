@@ -1,33 +1,33 @@
 import React, { FC, useState } from 'react';
 
 import { Categories, ProductCard, SortPopup } from '../../components';
-import { ProductCardType } from '../../App';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store.type';
 
 export type ActiveCategoryType = number | null;
 
-interface IHomeProps {
-  productItem: ProductCardType[];
-}
+const Home: FC = () => {
+  const { productItem } = useSelector((state: RootState) => {
+    return {
+      productItem: state.productItem.items,
+      sortBy: state.filters.sortBy,
+    };
+  });
 
-const Home: FC<IHomeProps> = ({ productItem }) => {
   const categoriesMockData = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+
   const sortMockData = [
     { name: 'популярности', type: 'popular' },
     { name: 'цене', type: 'price' },
     { name: 'алфавиту', type: 'alphabet' },
   ];
 
-  const [activeCategory, setActiveCategory] = useState<ActiveCategoryType>(null);
   const [activeSortName, setActiveSortName] = useState<number>(0);
 
   return (
     <div className="container">
       <div className="content__top">
-        <Categories
-          activeCategory={activeCategory}
-          setActiveCategory={(index) => setActiveCategory(index)}
-          items={categoriesMockData}
-        />
+        <Categories onClickItem={(index) => console.log(index)} items={categoriesMockData} />
         <SortPopup
           items={sortMockData}
           activeSortName={activeSortName}

@@ -1,37 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
 
+import { setProductItem } from './redux/actions/product-item-action';
 import { Header } from './components';
 import { Cart, Home } from './pages';
 
-export type ProductCardType = {
-  id?: string;
-  imageUrl: string;
-  name: string;
-  types: number[];
-  sizes: number[];
-  price: number;
-  category: number;
-  rating: number;
-};
-
-const App = () => {
-  const [productItem, setProductItem] = useState<ProductCardType[]>([]);
+const App: FC = () => {
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios.get('http://localhost:3000/db.json').then(({ data }) => {
-      setProductItem(data.pizzas);
+      dispatch(setProductItem(data.pizzas));
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
       <div className="wrapper">
         <Header />
         <div className="content">
-          <Route path="/" exact render={() => <Home productItem={productItem} />} />
-          <Route path="/cart" exact render={() => <Cart />} />
+          <Route path="/" exact component={Home} />
+          <Route path="/cart" exact component={Cart} />
         </div>
       </div>
     </>

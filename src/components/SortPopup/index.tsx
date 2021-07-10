@@ -1,15 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-
-type ItemsType = {
-  name: string;
-  type: string;
-};
-
-interface ISortPopupProps {
-  items: ItemsType[];
-  activeSortName: number;
-  setActiveSortName: (idx: number) => void;
-}
+import { ISortPopupProps } from './types';
 
 const SortPopup: FC<ISortPopupProps> = ({ items, activeSortName, setActiveSortName }) => {
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);

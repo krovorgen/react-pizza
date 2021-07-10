@@ -1,6 +1,7 @@
-import { ActionTypes, FiltersReducerType } from '../store.type';
+import { ActionTypes } from '../actions/types';
+import { FiltersInitialStateType } from './types';
 
-const initialState: FiltersReducerType = {
+const initialState: FiltersInitialStateType = {
   category: 0,
   sortBy: 'popular',
 };

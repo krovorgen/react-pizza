@@ -1,19 +1,6 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
-
-type AppearancesType = {
-  outline?: boolean;
-  cart?: boolean;
-  add?: boolean;
-  circle?: boolean;
-  black?: boolean;
-};
-
-interface IButtonProps {
-  onClick?: () => void;
-  addClass?: string;
-  appearance?: AppearancesType;
-}
+import { AppearancesType, IButtonProps } from './types';
 
 const Button: FC<IButtonProps & AppearancesType> = ({
   children,

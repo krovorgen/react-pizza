@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Button } from '../index';
 
 import logoSvg from '../../assets/img/pizza-logo.svg';
 
-const Header = () => {
+const Header: FC = () => {
   return (
     <header className="header">
       <div className="container">

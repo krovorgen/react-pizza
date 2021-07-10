@@ -1,6 +1,7 @@
-import { ActionTypes, ProductItemReducerType } from '../store.type';
+import { ProductInitialStateType } from './types';
+import { ActionTypes } from '../actions/types';
 
-const initialState: ProductItemReducerType = {
+const initialState: ProductInitialStateType = {
   items: [],
   isLoaded: false,
 };

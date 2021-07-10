@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
-import { ProductCardType } from '../../App';
 import classNames from 'classnames';
+
+import { ProductCardType } from '../../types';
 
 const ProductCard: FC<ProductCardType> = ({ imageUrl, price, name, types, sizes }) => {
   const [activeType, setActiveType] = useState<number>(types[0]);

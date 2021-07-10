@@ -1,5 +1,5 @@
-import { ProductItemActionType } from '../store.type';
-import { ProductCardType } from '../../App';
+import { ProductItemActionType } from './types/product-item-action.type';
+import { ProductCardType } from '../../types';
 
 export const setProductItem = (items: ProductCardType[]): ProductItemActionType => ({
   type: 'SET_PRODUCT',
