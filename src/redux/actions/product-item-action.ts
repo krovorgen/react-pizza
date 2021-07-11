@@ -1,9 +1,9 @@
 import { SetLoadedType, SetProductType } from './types/product-item-action.type';
-import { ActiveCategoryIndexType, ProductCardType } from '../../types';
+import { ActiveCategoryIndexType, IProductCardType } from '../../types';
 import axios from 'axios';
 import { SortByType } from './types/filters-action.type';
 
-export const setProductItem = (items: ProductCardType[]): SetProductType => ({
+export const setProductItem = (items: IProductCardType[]): SetProductType => ({
   type: 'SET_PRODUCT',
   payload: items,
 });

@@ -1,11 +1,20 @@
 import React, { FC, useState } from 'react';
 import classNames from 'classnames';
 
-import { ProductCardType } from '../../types';
+import { IProductCardType } from '../../types';
+import { Button } from '../index';
 
-const ProductCard: FC<ProductCardType> = ({ imageUrl, price, name, types, sizes }) => {
+const ProductCard: FC<IProductCardType> = ({
+  id,
+  imageUrl,
+  price,
+  name,
+  types,
+  sizes,
+  onClickAddProduct,
+}) => {
   const [activeType, setActiveType] = useState<number>(types[0]);
-  const [activeSize, setActiveSize] = useState(sizes[0]);
+  const [activeSize, setActiveSize] = useState(0);
 
   const typesName = ['тонкое', 'традиционное'];
   const sizeName = [26, 30, 40];
@@ -16,6 +25,18 @@ const ProductCard: FC<ProductCardType> = ({ imageUrl, price, name, types, sizes 
 
   const activeSizeHandler = (index: number) => {
     setActiveSize(index);
+  };
+
+  const addProductHandler = () => {
+    const obj = {
+      id,
+      imageUrl,
+      price,
+      name,
+      size: sizeName[activeSize],
+      type: typesName[activeType],
+    };
+    onClickAddProduct(obj);
   };
 
   return (
@@ -57,7 +78,7 @@ const ProductCard: FC<ProductCardType> = ({ imageUrl, price, name, types, sizes 
         </div>
         <div className="pizza-block__bottom">
           <div className="pizza-block__price">от {price} ₽</div>
-          <div className="button button--outline button--add">
+          <Button onClick={addProductHandler} outline add>
             <svg
               width="12"
               height="12"
@@ -72,7 +93,7 @@ const ProductCard: FC<ProductCardType> = ({ imageUrl, price, name, types, sizes 
             </svg>
             <span>Добавить</span>
             <i>2</i>
-          </div>
+          </Button>
         </div>
       </div>{' '}
     </>

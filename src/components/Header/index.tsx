@@ -1,11 +1,15 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { Button } from '../index';
+import { RootState } from '../../redux/store.type';
 
 import logoSvg from '../../assets/img/pizza-logo.svg';
 
 const Header: FC = () => {
+  const { totalPrice, totalProductItem } = useSelector((state: RootState) => state.cart);
+
   return (
     <header className="header">
       <div className="container">
@@ -22,7 +26,7 @@ const Header: FC = () => {
         <Link to="/cart">
           <div className="header__cart">
             <Button cart>
-              <span>520 ₽</span>
+              <span>{totalPrice} ₽</span>
               <div className="button__delimiter" />
               <svg
                 width="18"
@@ -53,7 +57,7 @@ const Header: FC = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span>3</span>
+              <span>{totalProductItem}</span>
             </Button>
           </div>
         </Link>
@@ -62,4 +66,4 @@ const Header: FC = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

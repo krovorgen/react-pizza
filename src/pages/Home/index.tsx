@@ -5,16 +5,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store.type';
 import { setCategory, setSortBy } from '../../redux/actions/filters-action';
 import { fetchProduct } from '../../redux/actions/product-item-action';
-import { ActiveCategoryIndexType } from '../../types';
+import { ActiveCategoryIndexType, OnClickAddProductType } from '../../types';
 import { SortByType } from '../../redux/actions/types/filters-action.type';
 import { ItemsType } from '../../components/SortPopup/types';
 
 const Home: FC = () => {
   const dispatch = useDispatch();
 
-  const isLoaded = useSelector((state: RootState) => state.productItem.isLoaded);
-  const productItem = useSelector((state: RootState) => state.productItem.items);
+  const { isLoaded, items } = useSelector((state: RootState) => state.productItem);
   const { category, sortBy } = useSelector((state: RootState) => state.filters);
+  // const { totalProductItem } = useSelector((state: RootState) => state.cart);
 
   useEffect(() => {
     dispatch(fetchProduct(sortBy, category));
@@ -33,6 +33,10 @@ const Home: FC = () => {
   ];
   const onClickSortType = useCallback((name: SortByType) => dispatch(setSortBy(name)), [dispatch]);
 
+  const onClickAddProduct = (obj: OnClickAddProductType) => {
+    console.log(obj);
+  };
+
   return (
     <div className="container">
       <div className="content__top">
@@ -46,8 +50,8 @@ const Home: FC = () => {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
         {isLoaded
-          ? productItem.map((item) => {
-              return <ProductCard key={item.id} {...item} />;
+          ? items.map((item) => {
+              return <ProductCard key={item.id} {...item} onClickAddProduct={onClickAddProduct} />;
             })
           : Array(10)
               .fill(0)

@@ -1,8 +1,8 @@
-import { ProductCardType } from '../../../types';
+import { IProductCardType } from '../../../types';
 
 export type SetProductType = {
   type: 'SET_PRODUCT';
-  payload: ProductCardType[];
+  payload: IProductCardType[];
 };
 
 export type SetLoadedType = {
