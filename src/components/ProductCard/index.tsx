@@ -12,6 +12,7 @@ const ProductCard: FC<IProductCardType> = ({
   types,
   sizes,
   onClickAddProduct,
+  addedCountProduct,
 }) => {
   const [activeType, setActiveType] = useState<number>(types[0]);
   const [activeSize, setActiveSize] = useState(0);
@@ -92,7 +93,7 @@ const ProductCard: FC<IProductCardType> = ({
               />
             </svg>
             <span>Добавить</span>
-            <i>2</i>
+            {addedCountProduct && <i>{addedCountProduct}</i>}
           </Button>
         </div>
       </div>{' '}

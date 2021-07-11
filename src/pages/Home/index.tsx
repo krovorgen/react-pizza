@@ -15,7 +15,9 @@ const Home: FC = () => {
 
   const { isLoaded, items } = useSelector((state: RootState) => state.productItem);
   const { category, sortBy } = useSelector((state: RootState) => state.filters);
-  // const { totalProductItem } = useSelector((state: RootState) => state.cart);
+  const { totalProductItem } = useSelector((state: RootState) => ({
+    totalProductItem: state.cart.items,
+  }));
 
   useEffect(() => {
     dispatch(fetchProduct(sortBy, category));
@@ -52,7 +54,14 @@ const Home: FC = () => {
       <div className="content__items">
         {isLoaded
           ? items.map((item) => {
-              return <ProductCard key={item.id} {...item} onClickAddProduct={onClickAddProduct} />;
+              return (
+                <ProductCard
+                  key={item.id}
+                  {...item}
+                  addedCountProduct={totalProductItem[item.id] && totalProductItem[item.id].length}
+                  onClickAddProduct={onClickAddProduct}
+                />
+              );
             })
           : Array(10)
               .fill(0)

@@ -1,5 +1,6 @@
 import { CartInitialStateType } from './types';
 import { CartActionType } from '../actions/types/cart-action.type';
+import { ProductItemCartType } from '../../types';
 
 const initialState: CartInitialStateType = {
   items: {},
@@ -19,13 +20,28 @@ const cartReducer = (state = initialState, action: CartActionType) => {
         ...state,
         totalProductItem: action.payload,
       };
-    case 'ADD_PRODUCT_CART':
+    case 'ADD_PRODUCT_CART': {
+      const newItems = {
+        ...state.items,
+        [action.payload.id]: !state.items[action.payload.id]
+          ? [action.payload]
+          : [...state.items[action.payload.id], action.payload],
+      };
+
+      const totalCount: ProductItemCartType[][] = Object.values(newItems);
+
+      const allSelectedProducts = ([] as ProductItemCartType[]).concat(...totalCount);
+
+      const totalPrice = allSelectedProducts.reduce((sum, obj) => sum + obj.price, 0);
+
       return {
         ...state,
-        items: {
-          [action.payload.id]: [...state.items[action.payload.id], action.payload],
-        },
+        items: newItems,
+        totalProductItem: allSelectedProducts.length,
+        totalPrice,
       };
+    }
+
     default:
       return state;
   }

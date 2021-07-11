@@ -17,6 +17,7 @@ export type IProductCardType = {
   category: number;
   rating: number;
   onClickAddProduct: (obj: ProductItemCartType) => void;
+  addedCountProduct: number;
 };
 
 export type ActiveCategoryIndexType = number | null;
