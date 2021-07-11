@@ -11,9 +11,14 @@ export type ProductInitialStateType = {
   isLoaded: boolean;
 };
 
+export type ItemsType = {
+  items: ProductItemCartType[];
+  totalPrice: number;
+};
+
 export type CartInitialStateType = {
   items: {
-    [key: string]: ProductItemCartType[];
+    [key: string]: ItemsType;
   };
   totalPrice: number;
   totalProductItem: number;

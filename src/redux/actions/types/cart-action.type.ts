@@ -1,13 +1,7 @@
 import { ProductItemCartType } from '../../../types';
 
-export type SetTotalPriceType = {
-  type: 'SET_TOTAL_PRICE';
-  payload: number;
-};
-
-export type SetTotalProductType = {
-  type: 'SET_TOTAL_PRODUCT';
-  payload: number;
+export type ClearCartType = {
+  type: 'CLEAR_CART';
 };
 
 export type AddProductCartType = {
@@ -15,4 +9,24 @@ export type AddProductCartType = {
   payload: ProductItemCartType;
 };
 
-export type CartActionType = SetTotalPriceType | SetTotalProductType | AddProductCartType;
+export type RemoveCartItemType = {
+  type: 'REMOVE_CART_ITEM';
+  payload: string;
+};
+
+export type PlusCartItemType = {
+  type: 'PLUS_ITEM';
+  payload: string;
+};
+
+export type MinusCartItemType = {
+  type: 'MINUS_ITEM';
+  payload: string;
+};
+
+export type CartActionType =
+  | ClearCartType
+  | AddProductCartType
+  | RemoveCartItemType
+  | PlusCartItemType
+  | MinusCartItemType;

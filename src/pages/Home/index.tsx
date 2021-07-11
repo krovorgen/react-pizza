@@ -58,7 +58,9 @@ const Home: FC = () => {
                 <ProductCard
                   key={item.id}
                   {...item}
-                  addedCountProduct={totalProductItem[item.id] && totalProductItem[item.id].length}
+                  addedCountProduct={
+                    totalProductItem[item.id] && totalProductItem[item.id].items.length
+                  }
                   onClickAddProduct={onClickAddProduct}
                 />
               );

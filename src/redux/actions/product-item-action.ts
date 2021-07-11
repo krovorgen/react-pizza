@@ -18,7 +18,7 @@ export const fetchProduct =
   (dispatch: (arg0: SetProductType | SetLoadedType) => void) => {
     dispatch(setLoaded(false));
     axios
-      .get(`http://localhost:3001/pizzas`, {
+      .get(`/pizzas`, {
         params: {
           category: category,
           _sort: sortBy,
