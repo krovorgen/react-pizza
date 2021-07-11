@@ -1,9 +1,9 @@
 import React, { FC, memo, useEffect, useRef, useState } from 'react';
 import { ISortPopupProps } from './types';
+import { SortByType } from '../../redux/actions/types/filters-action.type';
 
-const SortPopup: FC<ISortPopupProps> = ({ items }) => {
+const SortPopup: FC<ISortPopupProps> = ({ items, activeSortType, onClickSortType }) => {
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
-  const [activeSortName, setActiveSortName] = useState<number>(0);
 
   const sortRef = useRef<HTMLDivElement>(null);
   const toggleVisiblePopup = () => setVisiblePopup(!visiblePopup);
@@ -16,12 +16,12 @@ const SortPopup: FC<ISortPopupProps> = ({ items }) => {
     document.body.addEventListener('click', handleOutsideClick);
   }, []);
 
-  const onSelectItem = (idx: number) => {
-    setActiveSortName(idx);
+  const onSelectItem = (name: SortByType) => {
+    onClickSortType(name);
     setVisiblePopup(false);
   };
 
-  const activeLabel = items[activeSortName].name;
+  const activeLabel = items.find((obj) => obj.type === activeSortType)?.name;
 
   return (
     <div className="sort" ref={sortRef}>
@@ -49,8 +49,8 @@ const SortPopup: FC<ISortPopupProps> = ({ items }) => {
               items.map((item, idx) => (
                 <li
                   key={idx + item.type}
-                  className={idx === activeSortName ? 'active' : ''}
-                  onClick={() => onSelectItem(idx)}
+                  className={item.type === activeSortType ? 'active' : ''}
+                  onClick={() => onSelectItem(item.type)}
                 >
                   {item.name}
                 </li>

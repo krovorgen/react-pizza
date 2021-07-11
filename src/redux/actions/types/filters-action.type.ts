@@ -1,6 +1,6 @@
 import { ActiveCategoryIndexType } from '../../../types';
 
-export type SortByType = 'popular' | 'price' | 'alphabet';
+export type SortByType = 'popular' | 'price' | 'name';
 
 export type SetSortByType = {
   type: 'SET_SORT_BY';
