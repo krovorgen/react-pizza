@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store.type';
 import { setCategory, setSortBy } from '../../redux/actions/filters-action';
 import { fetchProduct } from '../../redux/actions/product-item-action';
-import { ActiveCategoryIndexType, OnClickAddProductType } from '../../types';
+import { ActiveCategoryIndexType, ProductItemCartType } from '../../types';
 import { SortByType } from '../../redux/actions/types/filters-action.type';
 import { ItemsType } from '../../components/SortPopup/types';
+import { addProductCart } from '../../redux/actions/cart-action';
 
 const Home: FC = () => {
   const dispatch = useDispatch();
@@ -33,8 +34,8 @@ const Home: FC = () => {
   ];
   const onClickSortType = useCallback((name: SortByType) => dispatch(setSortBy(name)), [dispatch]);
 
-  const onClickAddProduct = (obj: OnClickAddProductType) => {
-    console.log(obj);
+  const onClickAddProduct = (obj: ProductItemCartType) => {
+    dispatch(addProductCart(obj));
   };
 
   return (

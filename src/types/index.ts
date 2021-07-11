@@ -1,10 +1,10 @@
-export type OnClickAddProductType = {
-  id: string;
+export type ProductItemCartType = {
+  size: number;
+  price: number;
   imageUrl: string;
   name: string;
-  price: number;
-  size: number;
-  type: number;
+  id: string;
+  type: string;
 };
 
 export type IProductCardType = {
@@ -16,7 +16,7 @@ export type IProductCardType = {
   price: number;
   category: number;
   rating: number;
-  onClickAddProduct: (obj: OnClickAddProductType) => void;
+  onClickAddProduct: (obj: ProductItemCartType) => void;
 };
 
 export type ActiveCategoryIndexType = number | null;

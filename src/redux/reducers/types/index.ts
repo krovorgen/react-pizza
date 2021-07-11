@@ -1,5 +1,5 @@
 import { SortByType } from '../../actions/types/filters-action.type';
-import { ActiveCategoryIndexType, IProductCardType } from '../../../types';
+import { ActiveCategoryIndexType, IProductCardType, ProductItemCartType } from '../../../types';
 
 export type FiltersInitialStateType = {
   category: ActiveCategoryIndexType;
@@ -12,7 +12,9 @@ export type ProductInitialStateType = {
 };
 
 export type CartInitialStateType = {
-  items: any; // TODO: any
+  items: {
+    [key: string]: ProductItemCartType[];
+  };
   totalPrice: number;
   totalProductItem: number;
 };

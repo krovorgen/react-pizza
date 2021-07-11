@@ -1,3 +1,5 @@
+import { ProductItemCartType } from '../../../types';
+
 export type SetTotalPriceType = {
   type: 'SET_TOTAL_PRICE';
   payload: number;
@@ -10,7 +12,7 @@ export type SetTotalProductType = {
 
 export type AddProductCartType = {
   type: 'ADD_PRODUCT_CART';
-  payload: any; // TODO: any
+  payload: ProductItemCartType;
 };
 
 export type CartActionType = SetTotalPriceType | SetTotalProductType | AddProductCartType;
